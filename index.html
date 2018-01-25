@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>A2J Intake Form</title>
+		<!-- <link rel="stylesheet" href="signature-pad.css"> -->
+		<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+	</head>
+<body>
+<form id="a2jappform" name="a2jappform" action="process.php" method="post" class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>A2J Intake Form</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="first_name">First Name</label>  
+  <div class="col-md-4">
+  <input id="first_name" name="first_name" type="text" placeholder="Jane" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="last_name">Last Name</label>  
+  <div class="col-md-4">
+  <input id="last_name" name="last_name" type="text" placeholder="Doe" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="issue_note">Please describe your legal issue</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="issue_note" name="issue_note"></textarea>
+  </div>
+</div>
+
+
+<!-- Signature Pad -->
+<div id="signature-pad" class="signature-pad">
+    <div class="signature-pad--body">
+      <canvas id="signature" width="664" height="373" style="touch-action: none;"></canvas>
+    </div>
+    <div class="signature-pad--footer">
+      <div class="description">Sign above</div>
+
+      <div class="signature-pad--actions">
+        <div>
+          <button type="button" class="button clear" data-action="clear">Clear</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<input type="hidden" name="base64signature" id="base64signature" value="">
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit Application</button>
+  </div>
+</div>
+
+
+</fieldset>
+</form>
+<script src="app.js"></script>
+	<script>
+        $('canvas').on('mouseup', function() {
+          document.a2jappform.base64signature.value = document.getElementById('signature').toDataURL();
+        });
+	</script>
+
+</body>
+</html>
